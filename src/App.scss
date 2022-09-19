@@ -1,0 +1,26 @@
+@use "./styles/partials/colors" as *;
+
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+// body {
+//     font-family: "AvenirNext", sans-serif;
+//     color: $primary-color-text;
+//     background-color: $primary-color-cta-text;
+//     min-width: 30rem;
+// }
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+ul, li {
+    list-style: none;
+}
