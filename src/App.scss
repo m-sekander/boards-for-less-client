@@ -1,5 +1,5 @@
 @use "./styles/partials/colors" as *;
-
+@use "./styles/partials/typography" as *;
 
 *,
 *::before,
@@ -9,18 +9,43 @@
     padding: 0;
 }
 
-// body {
-//     font-family: "AvenirNext", sans-serif;
-//     color: $primary-color-text;
-//     background-color: $primary-color-cta-text;
-//     min-width: 30rem;
-// }
+body {
+    font-family: "JosefinSans", sans-serif;
+    color: $primary-paragraph;
+    background-color: $primary-background;
+    min-width: 30rem;
+}
 
-a {
-    color: inherit;
+h1 {
+    font-size: 1.75rem;
+    line-height: 2rem;
+    font-weight: 600;
+}
+
+h2,
+label {
+    font-size: 1.25rem;
+    line-height: 1.5rem;
+    font-weight: 600;
+}
+
+h3 {
+    font-size: 1rem;
+    line-height: 1.25rem;
+    font-weight: 600;
+}
+
+p,
+span,
+a,
+h4 {
+    font-size: .8125rem;
+    line-height: 1.125rem;
+    font-style: normal;
     text-decoration: none;
 }
 
-ul, li {
+ul,
+li {
     list-style: none;
 }
