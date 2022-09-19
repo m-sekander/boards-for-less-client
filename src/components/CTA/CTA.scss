@@ -1,0 +1,32 @@
+@use "../../styles/partials/colors" as *;
+
+.cta {
+    display: block;
+    height: 2.5rem;
+    border: 0;
+    border-radius: 8px;
+    font-size: .75rem;
+    line-height: 1.25rem;
+    font-weight: 600;
+    background-color: $cta-background;
+    color: $cta-text;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-transform: uppercase;
+    position: relative;
+    max-width: 9.375rem;
+    padding: 0 2rem;
+
+    &:hover {
+        cursor: pointer;
+        background-color: $cta-hover;
+    }
+
+    &__icon {
+        // max-width: 1.25rem;
+        height: 1.25rem;
+        position: absolute;
+        left: 0.375rem;
+    }
+}
