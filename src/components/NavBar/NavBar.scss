@@ -1,0 +1,52 @@
+@use "../../styles/partials/colors" as *;
+
+.nav-bar {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 83.25vh;
+    width: 12.5rem;
+    padding: 2rem 0 0.75rem 0;
+    border-right: 1px solid $divider-line;
+
+    &__links {
+        display: flex;
+        flex-direction: column;
+    }
+
+    &__link {
+        margin-bottom: 1.75rem;
+        padding: 0.75rem 1.5rem;
+        width: 12rem;
+        border: 2px solid $divider-line;
+        border-left: none;
+        text-align: center;
+        border-radius: 0 50px 50px 0;
+        position: relative;
+
+        &:hover {
+            transform: scale(1.05);
+            border: 2px solid $tertiary;
+            background-color: $tertiary;
+            color: $cta-text;
+            & > .nav-bar__icon {
+                filter: brightness(100) saturate(100%);
+            }
+        }
+    }
+
+    &__icon {
+        position: absolute;
+        left: 0.5rem;
+        top: 0.5rem;
+        width: 24px;
+        height: 24px;
+        filter: brightness(0) saturate(100%) invert(11%) sepia(72%) saturate(612%) hue-rotate(176deg) brightness(99%) contrast(88%);
+    }
+
+    &__footer {
+        text-align: center;
+        font-weight: 200;
+        color: $cta-hover;
+    }
+}

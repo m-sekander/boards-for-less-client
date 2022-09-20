@@ -1,12 +1,12 @@
 @use "../../styles/partials/colors" as *;
 
 .header {
-    background-color: $secondary-background;
     height: 5.3125rem;
     display: flex;
     align-items: center;
     justify-content: space-between;
     padding: 1rem;
+    border-bottom: 1px solid $divider-line;
     
     &__logo {
         height: 5rem;
