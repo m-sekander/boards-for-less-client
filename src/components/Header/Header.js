@@ -5,13 +5,13 @@ import CTA from '../CTA/CTA';
 
 function Header() {
     return (
-        <section className='header'>
+        <header className='header'>
             <Link to="/"><img className='header__logo' src={logo} alt="application logo" /></Link>
             <div className='header__right'>
                 <h3 className='header__welcome'>Welcome, [Name]</h3>
                 <CTA text="Logout" link="/"/>
             </div>
-        </section>
+        </header>
     )
 }
 

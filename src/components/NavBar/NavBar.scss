@@ -5,7 +5,7 @@
     flex-direction: column;
     justify-content: space-between;
     height: 83.25vh;
-    width: 12.5rem;
+    width: 13rem;
     padding: 2rem 0 0.75rem 0;
     border-right: 1px solid $divider-line;
 
@@ -25,7 +25,7 @@
         position: relative;
 
         &:hover {
-            transform: scale(1.05);
+            transform: scale(1.075);
             border: 2px solid $tertiary;
             background-color: $tertiary;
             color: $cta-text;

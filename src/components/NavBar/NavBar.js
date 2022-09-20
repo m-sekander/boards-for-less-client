@@ -10,7 +10,7 @@ function NavBar() {
     const [navHover, setNavHover] = useState(false);
 
     return (
-        <div className='nav-bar'>
+        <nav className='nav-bar'>
             <div className='nav-bar__links'>
                 <Link className={`nav-bar__link ${navHover && 'nav-bar__link--hover'}`} to="/account">
                     <img className={`nav-bar__icon ${navHover && 'nav-bar__icon--hover'}`} src={overview} alt="overview icon" />
@@ -26,7 +26,7 @@ function NavBar() {
                 </Link>
             </div>
             <span className='nav-bar__footer'>A capstone pursuit by <br/> Moin Sekander</span>
-        </div>
+        </nav>
     )
 }
 
