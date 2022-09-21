@@ -4,23 +4,22 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    height: 83.25vh;
-    width: 13rem;
+    min-width: 13rem;
     padding: 2rem 0 0.75rem 0;
     border-right: 1px solid $divider-line;
+    height: 100%;
 
     &__links {
         display: flex;
         flex-direction: column;
+        gap: 2rem;
     }
 
     &__link {
-        margin-bottom: 1.75rem;
-        padding: 0.75rem 1.5rem;
+        padding: 0.75rem 0.5rem 0.75rem 2.75rem;
         width: 12rem;
         border: 2px solid $divider-line;
         border-left: none;
-        text-align: center;
         border-radius: 0 50px 50px 0;
         position: relative;
 
@@ -47,6 +46,6 @@
     &__footer {
         text-align: center;
         font-weight: 200;
-        color: $cta-hover;
+        color: $secondary-text;
     }
 }

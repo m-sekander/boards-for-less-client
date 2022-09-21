@@ -16,35 +16,49 @@ body {
     min-width: 30rem;
 }
 
-.main {
+.content {
     display: flex;
+    height: calc((100vh - 5.3125rem));
+}
+
+main {
+    background-color: $secondary-background;
+    width: 100%;
+    padding: 3.25rem;
+    height: 100%;
 }
 
 h1 {
     font-size: 1.75rem;
     line-height: 2rem;
-    font-weight: 600;
+    font-weight: 400;
 }
 
-h2,
-label {
+h2 {
     font-size: 1.25rem;
     line-height: 1.5rem;
     font-weight: 600;
+    color: $primary-headline;
 }
 
 h3 {
     font-size: 1rem;
+    line-height: 1.375rem;
+    font-weight: 400;
+}
+
+h4,
+label {
+    font-size: .875rem;
     line-height: 1.25rem;
     font-weight: 600;
 }
 
 p,
 span,
-a,
-h4 {
-    font-size: .8125rem;
-    line-height: 1.125rem;
+a {
+    font-size: .875rem;
+    line-height: 1.25rem;
     font-style: normal;
     text-decoration: none;
     color: inherit;

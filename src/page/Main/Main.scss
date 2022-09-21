@@ -1,0 +1,14 @@
+@use "../../styles/partials/colors" as *;
+
+.main {
+    display: flex;
+    flex-direction: column;
+
+    &__title {
+        margin-bottom: 1rem;
+    }
+
+    &__content {
+        height: 100%;
+    }
+}
