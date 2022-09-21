@@ -1,16 +1,16 @@
-import CTA from '../../components/CTA/CTA';
+import CTA from '../CTA/CTA';
 import './Login.scss';
 
 function Login() {
     function onSubmit(event) {
         event.preventDefault();
-
+        console.log("Submitted");
     }
 
 
     return (
         <div className='login'>
-            <h2 className='login__title'>Please login to continue...</h2>
+            <h2 className='login__title'>Please login to continue.</h2>
             <form className='login__form' onSubmit={onSubmit}>
                 <label className="login__label" htmlFor="email">
                     Email :
@@ -21,8 +21,8 @@ function Login() {
                     <input className="login__input" type="password" name="password" id="password" />
                 </label>
                 <div className='login__actions'>
-                    <CTA text="Register" link="/register" />
-                    <CTA text="Submit" isButton={true} />
+                    <CTA text="Sign Up" link="/register" />
+                    <CTA text="Login" isButton={true} />
                 </div>
             </form>
 

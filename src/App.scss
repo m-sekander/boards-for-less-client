@@ -13,19 +13,18 @@ body {
     font-family: "JosefinSans", sans-serif;
     color: $primary-paragraph;
     background-color: $primary-background;
-    min-width: 30rem;
+    min-width: 42.5rem;
 }
 
 .content {
     display: flex;
-    height: calc((100vh - 5.3125rem));
+    min-height: calc((100vh - 5.3125rem));
 }
 
 main {
     background-color: $secondary-background;
     width: 100%;
     padding: 3.25rem;
-    height: 100%;
 }
 
 h1 {

@@ -1,11 +1,11 @@
 @use "../../styles/partials/colors" as *;
 
-.login {
-    height: 75%;
+.register {
+    min-height: 35rem;
     background-color: $primary-background;
     border-radius: 8px;
     padding: 2.5rem;
-    padding-top: 6rem;
+    padding-top: 4rem;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -17,20 +17,36 @@
         align-items: center;
         width: 100%;
     }
+
+    &__inputs {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 1rem 4rem;
+    }
     
     &__label {
         display: flex;
         flex-direction: column;
+        align-items: center;
         color: $primary-headline;
         margin-bottom: 1.5rem;
+        width: 40%;
+        min-width: 15rem;
+        max-width: 30rem;
+
+        &:last-child {
+            width: 90%;
+            max-width: 75rem;
+        }
     }
 
     &__input {
         margin-top: 0.25rem;
         font-family: inherit;
         height: 3rem;
-        width: 22.5rem;
-        padding: 0.75rem;
+        width: 100%;
+        padding: 0.75rem 1.25rem;
         border: 1px solid $divider-line;
         border-radius: 50px;
         background-color: $input-background;
@@ -42,11 +58,13 @@
         }
     }
 
-    &__actions {
-        // align-self: flex-end;
-        display: flex;
-        // margin-right: 6.75rem;
-        gap: 2rem;
+    &__address {
+        width: 97.5%;
+    }
 
+    &__actions {
+        margin-top: 1.125rem;
+        display: flex;
+        gap: 2rem;
     }
 }
