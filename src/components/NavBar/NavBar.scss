@@ -24,13 +24,22 @@
 
         &:hover {
             transform: scale(1.075);
-            border: 2px solid $tertiary;
+            border: 2px solid $secondary-background;
             background-color: $tertiary;
             color: $cta-text;
             & > .nav-bar__icon {
                 filter: brightness(100) saturate(100%);
             }
         }
+    }
+
+    .active {
+        border: 2px solid $secondary-background;
+            background-color: $tertiary;
+            color: $cta-text;
+            & > .nav-bar__icon {
+                filter: brightness(100) saturate(100%);
+            }
     }
 
     &__icon {

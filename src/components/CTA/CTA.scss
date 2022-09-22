@@ -25,12 +25,22 @@
         background-color: $cta-hover;
     }
 
+    &:focus {
+        border: 1px solid $secondary-text;
+        outline: none;
+    }
+
     &--special {
         background-color: $cta-background-special;
         color: $cta-text;
         
         &:hover {
             background-color: $cta-hover-special;
+        }
+
+        &:focus {
+            border: 1px solid $cta-hover;
+            outline: none;
         }
     }
 
