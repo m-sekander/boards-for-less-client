@@ -45,7 +45,6 @@ function Login() {
                     <CTA text="Login" isButton={true} />
                 </div>
             </form>
-
         </div>
     )
 }

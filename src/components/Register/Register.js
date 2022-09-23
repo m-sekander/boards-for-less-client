@@ -62,7 +62,6 @@ function Register() {
                     <CTA text="Submit" isButton={true} />
                 </div>
             </form>
-
         </div>
     )
 }

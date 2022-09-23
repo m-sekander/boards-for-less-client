@@ -1,0 +1,70 @@
+@use "../../styles/partials/colors" as *;
+
+.home {
+    min-height: 32.5rem;
+    background-color: $primary-background;
+    border-radius: 8px;
+    padding: 2.5rem;
+    padding-top: 5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+
+    &__home {
+        text-align: center;
+    }
+
+    &__links {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        gap: 2.25rem;
+    }
+
+    &__link {
+        height: 20rem;
+        width: 25vw;
+        min-width: 15rem;
+        border: 2px solid $cta-background-special;
+        border-radius: 8px;
+        background-color: rgba($cta-background-special, 75%);
+        color: $cta-text;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        text-transform: uppercase;
+        padding: 1rem 2rem;
+        
+        &:hover {
+            background-color: $cta-background-special;
+        }
+        
+        &:focus {
+            border: 2px solid $cta-background;
+            outline: none;
+        }
+    }
+    
+    &__image {
+        &--try {
+            height: 10.75rem;
+            margin: 0 auto;
+        }
+        
+        &--share {
+            height: 10.75rem;
+            width: 8.75rem;
+            aspect-ratio: 4/5;
+            margin: 0 auto;
+        }
+    }
+    
+    &__text {
+        text-align: center;
+    }
+
+    &__foot {
+        font-weight: 200;
+    }
+}

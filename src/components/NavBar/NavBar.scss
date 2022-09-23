@@ -49,6 +49,10 @@
         width: 24px;
         height: 24px;
         filter: brightness(0) saturate(100%) invert(11%) sepia(72%) saturate(612%) hue-rotate(176deg) brightness(99%) contrast(88%);
+
+        &--reverse {
+            transform: rotate(180deg);
+        }
     }
 
     &__footer {

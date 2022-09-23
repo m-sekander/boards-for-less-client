@@ -11,6 +11,10 @@
     align-items: center;
     gap: 2rem;
 
+    &__title {
+        text-align: center;
+    }
+
     &__form {
         display: flex;
         flex-direction: column;

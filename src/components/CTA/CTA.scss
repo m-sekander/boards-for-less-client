@@ -1,7 +1,6 @@
 @use "../../styles/partials/colors" as *;
 
 .cta {
-    display: block;
     height: 2.5rem;
     border: 0;
     border-radius: 8px;
@@ -17,7 +16,6 @@
     position: relative;
     width: 8rem;
     padding: 0 2rem;
-    background-color: $cta-background;
     font-family: inherit;
 
     &:hover {
@@ -26,20 +24,21 @@
     }
 
     &:focus {
-        border: 1px solid $secondary-text;
+        border: 1px solid $cta-background-special;
         outline: none;
     }
 
     &--special {
-        background-color: $cta-background-special;
-        color: $cta-text;
+        border: 1px solid $cta-background-special;
+        border-radius: 8px;
+        background-color: rgba($cta-background-special, 75%);
         
         &:hover {
-            background-color: $cta-hover-special;
+            background-color: $cta-background-special;
         }
-
+    
         &:focus {
-            border: 1px solid $cta-hover;
+            border: 1px solid $cta-background;
             outline: none;
         }
     }
