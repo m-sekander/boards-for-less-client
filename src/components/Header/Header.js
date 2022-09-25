@@ -32,6 +32,7 @@ function Header({isLoggedIn}) {
         });
       }, []);
 
+      
     return (
         <header className='header'>
             <Link to="/"><img className='header__logo' src={logo} alt="application logo" /></Link>

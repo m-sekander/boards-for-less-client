@@ -1,11 +1,11 @@
 import './CTA.scss';
 import {Link} from 'react-router-dom';
 
-function CTA({icon, text, isButton, link, isSpecial, onClick}) {
+function CTA({icon, text, isButton, link, isSpecial, onClick, type}) {
     // Returns button if isButton prop is true else returns link
     if (isButton) {
         return (
-            <button className={`cta ${isSpecial && "cta--special"}` } onClick={onClick}>
+            <button className={`cta ${isSpecial && "cta--special"}` } onClick={onClick} type={type ? type : ""}>
                 <img className="cta__icon" src={icon} alt=""/>
                 {text}
             </button>

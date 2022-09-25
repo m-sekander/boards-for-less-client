@@ -15,7 +15,7 @@
     }
 
     &__link {
-        padding: 0.75rem 0.5rem 0.75rem 2.75rem;
+        padding: 0.875rem 0.5rem 0.625rem 2.75rem;
         width: 12rem;
         border: 2px solid $divider-line;
         border-left: none;
@@ -31,23 +31,30 @@
                 filter: brightness(100) saturate(100%);
             }
         }
+
+        &:first-child {
+            .nav-bar__icon {
+                width: 22px;
+                height: 22px;
+            }
+        }
     }
 
     .active {
         border: 2px solid $secondary-background;
-            background-color: $tertiary;
-            color: $cta-text;
-            & > .nav-bar__icon {
-                filter: brightness(100) saturate(100%);
-            }
+        background-color: $tertiary;
+        color: $cta-text;
+        & > .nav-bar__icon {
+            filter: brightness(100) saturate(100%);
+        }
     }
 
     &__icon {
         position: absolute;
         left: 0.5rem;
-        top: 0.5rem;
-        width: 24px;
-        height: 24px;
+        top: 0.625rem;
+        width: 25px;
+        height: 25px;
         filter: brightness(0) saturate(100%) invert(11%) sepia(72%) saturate(612%) hue-rotate(176deg) brightness(99%) contrast(88%);
 
         &--reverse {

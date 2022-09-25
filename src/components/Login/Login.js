@@ -5,6 +5,7 @@ import { useState } from 'react';
 
 function Login() {
     const [message, setMessage] = useState(null);
+    const [isSuccessful, setIsSuccessful] = useState(false);
 
     function onSubmit(event) {
         event.preventDefault();
@@ -15,6 +16,7 @@ function Login() {
         }).then((result) => {
             console.log("For devs:", result);
             setMessage(result.data.message);
+            setIsSuccessful(true);
             localStorage.setItem('token', result.data.token);
             event.target.reset();
 
@@ -30,7 +32,7 @@ function Login() {
 
     return (
         <div className='login'>
-            <h2 className='login__title'>{message ? message : "Please login to continue."}</h2>
+            <h2 className={`login__title ${message ? (isSuccessful ? 'login__title--successful' : 'login__title--error') : ""}`}>{message ? message : "Please login to continue."}</h2>
             <form className='login__form' onSubmit={onSubmit}>
                 <label className="login__label" htmlFor="email">
                     Email :

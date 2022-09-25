@@ -13,6 +13,15 @@
 
     &__title {
         text-align: center;
+
+        &--successful {
+            transform: scale(1.075);
+        }
+        
+        &--error {
+            transform: scale(1.075);
+            color: $secondary-text;
+        }
     }
 
     &__form {

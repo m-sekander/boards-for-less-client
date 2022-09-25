@@ -5,6 +5,7 @@ import { useState } from 'react';
 
 function Register() {
     const [message, setMessage] = useState(null);
+    const [isSuccessful, setIsSuccessful] = useState(false);
 
     function handleSignup(event) {
         event.preventDefault();
@@ -19,9 +20,11 @@ function Register() {
         }).then((result) => {
             console.log("For devs:", result);
             setMessage(result.data.message);
+            setIsSuccessful(true);
 
             setTimeout(() => {
                 setMessage(null);
+                setIsSuccessful(false);
                 event.target.reset();
             }, 2000);
         }).catch((error) => {
@@ -33,7 +36,7 @@ function Register() {
 
     return (
         <div className='register'>
-            <h2 className='register__title'>{message ? message : "Please fill in all details to create an account."}</h2>
+            <h2 className={`register__title ${message ? (isSuccessful ? 'register__title--successful' : 'register__title--error') : ""}`}>{message ? message : "Please fill in all details to create an account."}</h2>
             <form className='register__form' onSubmit={handleSignup}>
                 <div className='register__inputs'>
                     <label className="register__label" htmlFor="email">

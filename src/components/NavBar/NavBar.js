@@ -1,5 +1,6 @@
 import './NavBar.scss';
 import { NavLink } from 'react-router-dom';
+import home from '../../assets/images/home-icon.svg';
 import overview from '../../assets/images/overview.svg';
 import list from '../../assets/images/list.svg';
 import rent from '../../assets/images/rent.svg';
@@ -11,7 +12,7 @@ function NavBar({isLoggedIn}) {
             {isLoggedIn ?
                 <div className='nav-bar__links'>
                     <NavLink className="nav-bar__link" to="/" end>
-                        {/* <img className="nav-bar__icon" src={overview} alt="overview icon" /> */}
+                        <img className="nav-bar__icon" src={home} alt="home icon" />
                         Home
                     </NavLink>
                     <NavLink className="nav-bar__link" to="/account">

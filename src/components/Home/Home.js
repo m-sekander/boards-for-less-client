@@ -1,7 +1,7 @@
 import './Home.scss';
 import { Link } from 'react-router-dom';
-import playing from '../../assets/images/friends-playing-game.png'
-import handing from '../../assets/images/handing-parcel-to-customer.png'
+import playing from '../../assets/images/friends-playing-game.png';
+import handing from '../../assets/images/handing-parcel-to-customer.png';
 
 function Home() {
     return (
