@@ -15,12 +15,13 @@
         text-align: center;
 
         &--successful {
+            color: $cta-background;
             transform: scale(1.075);
         }
         
         &--error {
-            transform: scale(1.075);
             color: $secondary-text;
+            transform: scale(1.075);
         }
     }
 
@@ -47,6 +48,7 @@
         width: 40%;
         min-width: 15rem;
         max-width: 30rem;
+        position: relative;
 
         &:last-child {
             width: 90%;
@@ -64,15 +66,40 @@
         border-radius: 50px;
         background-color: $input-background;
         color: $primary-headline;
-
+        
         &:focus {
             border: 1px solid $secondary-text;
             outline: none;
         }
     }
-
+    
     &__address {
         width: 97.5%;
+    }
+    
+    &__suggestions {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        padding: 0 1.75rem;
+        position: absolute;
+        top: 4.5rem;
+        z-index: 1;
+    }
+    
+    &__suggestion {
+        font-family: inherit;
+        min-height: 2.5rem;
+        padding: 0.625rem 0.75rem 0.25rem;
+        border: 1px solid $divider-line;
+        color: $primary-headline;
+        background-color: $primary-background;
+        
+        &:hover {
+            background-color: $input-background;
+            border: 1px solid rgba($cta-background-special, 75%);
+            cursor: pointer;
+        }
     }
 
     &__actions {

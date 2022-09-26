@@ -25,8 +25,8 @@ function Header({isLoggedIn}) {
                 Authorization: `Bearer ${token}`,
             },
         }).then((result) => {
-            console.log("For devs:", result);
-            setName(result.data.name);
+            const nameArr = result.data.name.split(" ");
+            setName(nameArr[0]);
         }).catch((error) => {
             console.log("For devs:", error);
         });

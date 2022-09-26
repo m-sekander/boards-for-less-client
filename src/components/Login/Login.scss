@@ -15,12 +15,13 @@
         text-align: center;
 
         &--successful {
+            color: $cta-background;
             transform: scale(1.075);
         }
         
         &--error {
-            transform: scale(1.075);
             color: $secondary-text;
+            transform: scale(1.075);
         }
     }
 

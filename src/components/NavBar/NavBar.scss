@@ -27,8 +27,10 @@
             border: 2px solid $secondary-background;
             background-color: $tertiary;
             color: $cta-text;
+            padding-left: 3.125rem;
             & > .nav-bar__icon {
                 filter: brightness(100) saturate(100%);
+                left: 0.875rem;
             }
         }
 

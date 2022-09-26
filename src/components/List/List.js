@@ -17,7 +17,6 @@ function List() {
         axios.get(`https://api.boardgameatlas.com/api/game/categories?client_id=${clientId}`)
         .then((result) => {
             setCategories(result.data.categories);
-            console.log("For devs:", result);
         }).catch((error) => {
             console.log("For devs:", error);
         })
@@ -134,7 +133,7 @@ function List() {
                     <label className="list__label" htmlFor="category">
                         Category :
                         <select className="list__select" name="category" id="category" value={foundCategory ? foundCategory : ""} onChange={changeHandler}>
-                            <option className="list__option" value="">- Please Select -</option>
+                            <option className="list__option" value="" disabled>- Please Select -</option>
                             {categories.map((item) => {
                                 return (<option key={item.id} className="list__option" value={item.name}>{item.name}</option>)
                             })}

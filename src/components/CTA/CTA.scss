@@ -2,7 +2,7 @@
 
 .cta {
     height: 2.5rem;
-    border: 0;
+    border: 1px solid $cta-hover;
     border-radius: 8px;
     font-size: .75rem;
     line-height: 1.25rem;
@@ -41,12 +41,5 @@
             border: 1px solid $cta-background;
             outline: none;
         }
-    }
-
-    &__icon {
-        // max-width: 1.25rem;
-        height: 1.25rem;
-        position: absolute;
-        left: 0.375rem;
     }
 }

@@ -8,10 +8,20 @@ import Register from './components/Register/Register';
 import Home from './components/Home/Home';
 import List from './components/List/List';
 import Rent from './components/Rent/Rent';
+import { useLoadScript } from '@react-google-maps/api';
 
 function App() {
   const isLoggedIn = localStorage.getItem('token');
+  const libraries = ["places"]
 
+  const { isLoaded } = useLoadScript({
+    googleMapsApiKey: "AIzaSyDMuQtxPW9rkoF6PnC1jwjnxorhrfuAQxA",
+    libraries: libraries
+  });
+
+  if (!isLoaded) {
+    return
+  }
   
   return (
     <BrowserRouter>
