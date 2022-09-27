@@ -9,7 +9,7 @@ function Register() {
     const [message, setMessage] = useState(null);
     const [isSuccessful, setIsSuccessful] = useState(false);
     const [address, setAddress] = useState("");
-    const searchOptions = { region: "CA", types: ["address"] }
+    const searchOptions = { types: ["address"] }
 
     function handleChange(address) {
         setAddress(address);
@@ -41,10 +41,7 @@ function Register() {
                 setIsSuccessful(true);
     
                 setTimeout(() => {
-                    setMessage(null);
-                    setIsSuccessful(false);
-                    setAddress("");
-                    event.target.reset();
+                    window.location.assign("/");
                 }, 2000);
             })
         }).catch((error) => {
@@ -59,7 +56,7 @@ function Register() {
     return (
         <div className='register'>
             <h2 className={`register__title ${message ? (isSuccessful ? 'register__title--successful' : 'register__title--error') : ""}`}>{message ? message : "Please fill in all details to create an account."}</h2>
-            <form className='register__form' onSubmit={handleSignup}>
+            <form className='register__form' onSubmit={handleSignup} autoComplete="off">
                 <div className='register__inputs'>
                     <label className="register__label" htmlFor="email">
                         Email :
@@ -83,7 +80,7 @@ function Register() {
                         onSelect={handleSelect}
                         searchOptions={searchOptions}
                     >
-                        {({ getInputProps, suggestions, getSuggestionItemProps, loading }) => (
+                        {({ getInputProps, suggestions, getSuggestionItemProps }) => (
                         <label className="register__label" htmlFor="address">
                             Home Address :
                             <input
@@ -91,10 +88,10 @@ function Register() {
                                 className: 'register__input register__address',
                                 name: "address",
                                 id: "address",
+
                             })}
                             />
                             <div className="register__suggestions">
-                                {loading && <div>Loading...</div>}
                                 {suggestions.slice(0, 3).map(suggestion => {
                                     const className = 'register__suggestion'
                                     return (

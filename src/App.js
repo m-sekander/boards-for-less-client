@@ -9,14 +9,15 @@ import Home from './components/Home/Home';
 import List from './components/List/List';
 import Rent from './components/Rent/Rent';
 import { useLoadScript } from '@react-google-maps/api';
+const libraries = ["places"]
 
 function App() {
   const isLoggedIn = localStorage.getItem('token');
-  const libraries = ["places"]
 
   const { isLoaded } = useLoadScript({
     googleMapsApiKey: "AIzaSyDMuQtxPW9rkoF6PnC1jwjnxorhrfuAQxA",
-    libraries: libraries
+    region: "CA",
+    libraries
   });
 
   if (!isLoaded) {

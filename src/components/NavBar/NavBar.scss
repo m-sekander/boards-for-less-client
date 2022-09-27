@@ -46,6 +46,7 @@
         border: 2px solid $secondary-background;
         background-color: $tertiary;
         color: $cta-text;
+        
         & > .nav-bar__icon {
             filter: brightness(100) saturate(100%);
         }
