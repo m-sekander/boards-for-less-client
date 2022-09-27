@@ -1,6 +1,6 @@
 @use "../../styles/partials/colors" as *;
 
-.rent {
+.account {
     min-height: 32.5rem;
     min-width: 30rem;
     background-color: $primary-background;
@@ -14,6 +14,7 @@
 
     &__title {
         text-align: center;
+        font-size: 1.5rem;
         margin-bottom: 0.5rem;
         
         &--successful {
@@ -34,21 +35,33 @@
         width: 100%;
     }
 
+    &__subtitle {
+        margin-bottom: 1rem;
+        text-align: center;
+    }
+
+    &__inputs {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 0 2.5rem;
+    }
+    
     &__label {
         display: flex;
         flex-direction: column;
         align-items: center;
         color: $primary-headline;
         margin-bottom: 1.5rem;
-        width: 100%;
+        width: 40%;
         min-width: 15rem;
-        max-width: 75rem;
-    }
-
-    &__field {
-        display: flex;
-        width: 75%;
+        max-width: 30rem;
         position: relative;
+
+        &:last-child {
+            width: 90%;
+            max-width: 75rem;
+        }
     }
 
     &__input {
@@ -61,82 +74,26 @@
         border-radius: 50px;
         background-color: $input-background;
         color: $primary-headline;
+        text-align: center;
         
         &:focus {
             border: 1px solid $secondary-text;
             outline: none;
         }
-
-        &::-webkit-search-cancel-button {
-            display: none;
-        }
+    }
+    
+    &__address {
+        width: 97.5%;
     }
 
-    &__search {
-        position: absolute;
-        right: 0.5rem;
-        top: 0.625rem;
-        border: none;
-        border-radius: 50%;
-        background-color: $cta-background;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        padding: 0.5rem;
-
-        &:hover {
-            cursor: pointer;
-            background-color: $cta-hover;
-        }
-
-        &:focus {
-            border: 1px solid $cta-background-special;
-            outline: none;
-        }
-    }
-
-    &__icon {
-        filter: brightness(100) saturate(100%);
-    }
-
-    &__map {
-        width: 50vw;
-        height: 50vh;
-        min-width: 22.5rem;
-        max-width: 80rem;
-        min-height: 22.5rem;
-        max-height: 80rem;
-        border-radius: 8px;
-        
-        .gm-style-cc {
-            display:none;
-        }
-
-        &-container {
-            width: fit-content;
-            height: fit-content;
-            margin-bottom: 0.75rem;
-        }
-    }
-
-    &__listings {
+    &__post-list {
         width: 100%;
-    }
-
-    &__subtitle {
-        text-align: center;
     }
 
     &__gallery {
         display: flex;
         justify-content: space-between;
         flex-wrap: wrap;
-        padding: 1rem 0;
         gap: 0.5rem;
-    }
-
-    &__no-listings {
-        width: 100%;
-        text-align: center;
     }
 }

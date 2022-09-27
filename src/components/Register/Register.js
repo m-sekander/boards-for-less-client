@@ -56,7 +56,7 @@ function Register() {
     return (
         <div className='register'>
             <h2 className={`register__title ${message ? (isSuccessful ? 'register__title--successful' : 'register__title--error') : ""}`}>{message ? message : "Please fill in all details to create an account."}</h2>
-            <form className='register__form' onSubmit={handleSignup} autoComplete="off">
+            <form className='register__form' onSubmit={handleSignup}>
                 <div className='register__inputs'>
                     <label className="register__label" htmlFor="email">
                         Email :

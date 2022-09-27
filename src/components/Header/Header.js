@@ -6,7 +6,7 @@ import axios from 'axios';
 import { useState, useEffect } from 'react';
 
 function Header({isLoggedIn}) {
-    const [name, setName] = useState("")
+    const [name, setName] = useState("");
 
     function handleLogout() {
         localStorage.removeItem("token");
@@ -30,9 +30,9 @@ function Header({isLoggedIn}) {
         }).catch((error) => {
             console.log("For devs:", error);
         });
-      }, []);
+    }, []);
 
-      
+    
     return (
         <header className='header'>
             <Link to="/"><img className='header__logo' src={logo} alt="application logo" /></Link>

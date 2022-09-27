@@ -3,7 +3,7 @@ import axios from 'axios';
 import { useState, useEffect } from 'react';
 import searchIcon from '../../assets/images/search.svg';
 import { GoogleMap, Marker } from '@react-google-maps/api';
-import { Link } from 'react-router-dom'
+import GameCard from '../GameCard/GameCard';
 
 function Rent() {
     const [currLocation, setCurrLocation] = useState(null);
@@ -27,9 +27,10 @@ function Rent() {
     const currLocationMarker = {
         path: "M24-8c0 4.4-3.6 8-8 8h-32c-4.4 0-8-3.6-8-8v-32c0-4.4 3.6-8 8-8h32c4.4 0 8 3.6 8 8v32z",
         fillColor: "royalblue",
-        fillOpacity: 0.75,
+        fillOpacity: 0.9125,
         strokeWeight: 1.5,
         scale: 0.25,
+        zIndex: -1 
     }
 
     function handleSearch(event) {
@@ -39,11 +40,7 @@ function Rent() {
             return setEmptySearch(!emptySearch);
         }
 
-        const boardgameNameArr = event.target.name.value.split(" ");
-        const capitalizedBoardgameNameArr = boardgameNameArr.map((item) => {
-            return item[0].toUpperCase() + item.slice(1)
-        })
-        const boardgameNameParamFormat = capitalizedBoardgameNameArr.join("+");
+        const boardgameNameParamFormat = event.target.name.value.split(" ").join("+");
 
         axios.get(`http://localhost:7070/boardgames/${boardgameNameParamFormat}/?lat=${currLocation.lat}&lng=${currLocation.lng}`, {
             headers: {
@@ -166,12 +163,12 @@ function Rent() {
                 <>
                     <div className="rent__map-container">
                         <GoogleMap zoom={11} center={currLocation} options={options} mapContainerClassName="rent__map">
-                            <Marker position={currLocation} icon={currLocationMarker}/>
-                                {coordinates && 
-                                    coordinates.map((item, i) => {
-                                        return <Marker key={i+1} position={item} label={String(i+1)} />
-                                    })
-                                }
+                            <Marker position={currLocation} icon={currLocationMarker} zIndex={100} />
+                            {coordinates && 
+                                coordinates.map((item, i) => {
+                                    return <Marker key={i+1} position={item} label={String(i+1)} options={{zIndex:99-i, opacity:0.9325}} />
+                                })
+                            }
                         </GoogleMap>
                     </div>
                     <div className="rent__listings">
@@ -180,13 +177,7 @@ function Rent() {
                             {listings ?
                                 listings.map((item, i) => {
                                     return (
-                                        <div key={item.id} className="rent__card">
-                                            <div className="rent__details">
-                                                <span className="rent__listing-name">{item.name}</span>
-                                                <span className="rent__listing-address">{matchLabel(item.short_address)}) {item.short_address}</span>
-                                            </div>
-                                            <Link className="rent__action" to="/">More Details</Link>
-                                        </div>
+                                        <GameCard key={item.id} name={item.name} shortAddress={item.short_address} matchLabel={matchLabel} />
                                     )
                                 })
                             :

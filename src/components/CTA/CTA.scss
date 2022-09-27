@@ -21,6 +21,7 @@
     &:hover {
         cursor: pointer;
         background-color: $cta-hover;
+        transform: scale(1.025);
     }
 
     &:focus {

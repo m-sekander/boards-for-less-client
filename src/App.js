@@ -9,6 +9,7 @@ import Home from './components/Home/Home';
 import List from './components/List/List';
 import Rent from './components/Rent/Rent';
 import { useLoadScript } from '@react-google-maps/api';
+import Account from './components/Account/Account';
 const libraries = ["places"]
 
 function App() {
@@ -33,6 +34,7 @@ function App() {
           <Route path="/" element={isLoggedIn ? <Main title="Home" content={<Home />} /> : <Navigate to="/login" />} />
           <Route path="/login" element={!isLoggedIn ? <Main title="Login" content={<Login />} /> : <Navigate to="/" />} />
           <Route path="/register" element={!isLoggedIn ? <Main title="Register" content={<Register />} /> : <Navigate to="/" />} />
+          <Route path="/account" element={isLoggedIn ? <Main title="My Account" content={<Account />} /> : <Navigate to="/login" />} />
           <Route path="/list" element={isLoggedIn ? <Main title="List Board Game" content={<List />} /> : <Navigate to="/login" />} />
           <Route path="/rent" element={isLoggedIn ? <Main title="Rent Board Game" content={<Rent />} /> : <Navigate to="/login" />} />
           <Route path="*" element={<Navigate to="/" />} />
