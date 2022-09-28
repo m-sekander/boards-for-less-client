@@ -23,7 +23,7 @@ function Modal({ isOwner, ownerEmail, boardgameName, boardgameId, setModalActive
     function handleContact(event) {
         event.preventDefault();
 
-        document.location = "mailto:"+ownerEmail+"?subject="+`Interest In Renting: ${event.target.name.value}`;
+        document.location = `mailto:${ownerEmail}?subject=Interest In Renting: ${event.target.name.value}`;
     }
 
     function handleDelete(event) {

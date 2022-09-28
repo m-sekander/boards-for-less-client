@@ -10,11 +10,13 @@ import List from './components/List/List';
 import Rent from './components/Rent/Rent';
 import { useLoadScript } from '@react-google-maps/api';
 import Account from './components/Account/Account';
-const libraries = ["places"]
+
+const libraries = ["places"];
 
 function App() {
   const isLoggedIn = localStorage.getItem('token');
 
+  console.log(process.env)
   const { isLoaded } = useLoadScript({
     googleMapsApiKey: "AIzaSyDMuQtxPW9rkoF6PnC1jwjnxorhrfuAQxA",
     region: "CA",
