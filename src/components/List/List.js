@@ -25,7 +25,7 @@ function List() {
     function initializeDate() {
         const today = new Date();
         let initilizationDate = new Date();
-        initilizationDate.setDate(today.getDate() + 7);
+        initilizationDate.setDate(today.getDate() + 8);
 
         const year = String(initilizationDate.getFullYear());
         let month = String(initilizationDate.getMonth() + 1);

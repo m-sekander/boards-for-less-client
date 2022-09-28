@@ -22,6 +22,11 @@ function Register() {
         event.preventDefault();
         let formattedAddress;
 
+        if (!event.target.address.value) {
+            setMessage("Please make sure to provide all fields in the request");
+            return;
+        }
+
         geocodeByAddress(event.target.address.value)
         .then((result) => {
             formattedAddress = result[0].formatted_address;

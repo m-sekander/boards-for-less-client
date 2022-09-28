@@ -100,4 +100,9 @@
         flex-wrap: wrap;
         gap: 0.5rem;
     }
+
+    &__no-listings {
+        width: 100%;
+        text-align: center;
+    }
 }

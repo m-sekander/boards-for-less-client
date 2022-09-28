@@ -63,10 +63,12 @@ function Account() {
             <div className="account__post-list">
                 <h2 className='account__subtitle'>Your Listed Games</h2>
                 <div className="account__gallery">
-                    {userListings &&
+                    {userListings ?
                         userListings.map((item) => {
                             return <GameCard key={item.id} token={token} id={item.id} isOwner={true} name={item.name} priceWeekly={item.price_weekly} availableUntil={item.formattedAvailableUntil} setContentExpansion={setContentExpansion} />
                         })
+                    :
+                        <h3 className="account__no-listings">You have no board games posted.</h3>
                     }
                 </div>
             </div>
