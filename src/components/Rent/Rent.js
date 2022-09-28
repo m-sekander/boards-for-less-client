@@ -11,6 +11,7 @@ function Rent() {
     const [addresses, setAddresses] = useState(null);
     const [coordinates, setCoordinates] = useState(null);
     const [emptySearch, setEmptySearch] = useState(false);
+    const [contentExpansion, setContentExpansion] = useState(false);
 
     const token = localStorage.getItem('token');
 
@@ -148,7 +149,7 @@ function Rent() {
 
 
     return (
-        <div className="rent">
+        <div className={`rent ${contentExpansion ? "rent--expanded" : ""}`}>
             <h2 className="rent__title">Trying a new board game is just a few clicks away !</h2>
             <form className="rent__form" onSubmit={handleSearch}>
                 <label className="rent__label" htmlFor="name">
@@ -177,7 +178,7 @@ function Rent() {
                             {listings ?
                                 listings.map((item, i) => {
                                     return (
-                                        <GameCard key={item.id} name={item.name} shortAddress={item.short_address} matchLabel={matchLabel} />
+                                        <GameCard key={item.id} token={token} id={item.id} name={item.name} shortAddress={item.short_address} matchLabel={matchLabel} setContentExpansion={setContentExpansion} ownerEmail={item.user_email} />
                                     )
                                 })
                             :

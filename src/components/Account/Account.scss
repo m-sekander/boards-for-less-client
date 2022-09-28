@@ -2,7 +2,7 @@
 
 .account {
     min-height: 32.5rem;
-    min-width: 30rem;
+    min-width: 40rem;
     background-color: $primary-background;
     border-radius: 8px;
     padding: 2.5rem;
@@ -11,6 +11,10 @@
     flex-direction: column;
     align-items: center;
     gap: 1rem;
+
+    &--expanded {
+        min-height: 62.5rem;
+    }
 
     &__title {
         text-align: center;
@@ -58,7 +62,7 @@
         max-width: 30rem;
         position: relative;
 
-        &:last-child {
+        &--big {
             width: 90%;
             max-width: 75rem;
         }

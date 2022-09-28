@@ -1,0 +1,134 @@
+@use "../../styles/partials/colors" as *;
+
+.modal {
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.75);
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+    &__container {
+        background-color: $primary-background;
+        padding: 3rem 3rem 2rem;
+        width: 75%;
+        min-width: 40rem;
+        max-width: 70rem;
+        min-height: 15rem;
+        position: absolute;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        border-radius: 8px;
+        top: 7.5rem;
+    }
+
+    &__content {
+        display: flex;
+        flex-direction: column;
+        gap: 0.75rem;
+    }
+
+    &__close {
+        position: absolute;
+        right: 0.75rem;
+        top: 0.75rem;
+        filter: invert(8%) sepia(61%) saturate(7258%) hue-rotate(244deg) brightness(66%) contrast(122%);
+
+        &:hover {
+            cursor: pointer;
+            filter: brightness(0);
+            transform: scale(1.025);
+        }
+    }
+
+    &__title {
+        margin-bottom: 0.5rem;
+    }
+
+    &__form {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+    }
+
+    &__subtitle {
+        margin-bottom: 1rem;
+        text-align: center;
+    }
+
+    &__inputs {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 0 2.5rem;
+    }
+    
+    &__label {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        color: $primary-headline;
+        margin-bottom: 1.5rem;
+        width: 40%;
+        min-width: 15rem;
+        max-width: 30rem;
+        position: relative;
+
+        &--big {
+            width: 90%;
+            max-width: 75rem;
+        }
+    }
+
+    &__input {
+        margin-top: 0.25rem;
+        font-family: inherit;
+        height: 3rem;
+        width: 100%;
+        padding: 0.75rem 1.25rem;
+        border: 1px solid $divider-line;
+        border-radius: 50px;
+        background-color: $input-background;
+        color: $primary-headline;
+        text-align: center;
+        
+        &:focus {
+            border: 1px solid $secondary-text;
+            outline: none;
+        }
+    }
+    
+    &__address {
+        width: 97.5%;
+    }
+
+    &__textarea {
+        margin-top: 0.25rem;
+        font-family: inherit;
+        height: 7.5rem;
+        width: 100%;
+        padding: 0.75rem 1.25rem;
+        border: 1px solid $divider-line;
+        border-radius: 25px;
+        background-color: $input-background;
+        color: $primary-headline;
+        resize: none;
+        line-height: 1.5rem;
+
+        &:focus {
+            border: 1px solid $secondary-text;
+            outline: none;
+        }
+    }
+
+    &__actions {
+        display: flex;
+        justify-content: center;
+        gap: 3rem;
+    }
+}
