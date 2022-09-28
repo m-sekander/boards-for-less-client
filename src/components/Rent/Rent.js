@@ -76,71 +76,40 @@ function Rent() {
     }
 
     useEffect(() => {
-    //     axios.post('https://www.googleapis.com/geolocation/v1/geolocate?key=AIzaSyDMuQtxPW9rkoF6PnC1jwjnxorhrfuAQxA', {})
-    //     .then((result) => {
-    //         setCurrLocation(result.data.location);
-    //         axios.get(`http://localhost:7070/boardgames/?lat=${43.651670}&lng=${-79.397140}`, {
-    //             headers: {
-    //                 authorization: `Bearer: ${token}`
-    //             }
-    //         }).then((result) => {
-    //             const boardgameListings = result.data.sortedBoardgames.map((item) => {
-    //                 const addressArr = item.address.split(",");
-    //                 const shortAddress = addressArr[0] + "," + addressArr[1];
-    //                 item["short_address"] = shortAddress
-    //                 const coordinatesArr = item.coordinates.split(",");
-    //                 item["proper_coordinates"] = {lat: Number(coordinatesArr[0]), lng: Number(coordinatesArr[1])};
-    //                 return item;
-    //             })
-    //             const uniqueAddresses = [];
-    //             const uniqueCoordinates = [];
-    //             boardgameListings.forEach((item) => {
-    //                 if (!uniqueAddresses.includes(item.short_address)) {
-    //                     uniqueAddresses.push(item.short_address);
-    //                     uniqueCoordinates.push(item.proper_coordinates);
-    //                 }
-    //             })
-    //             setListings(boardgameListings);
-    //             setAddresses(uniqueAddresses);
-    //             setCoordinates(uniqueCoordinates);
-    //     }).catch((error) => {
-    //         console.log("For devs:", error);
-    //         setListings(null);
-    //         setAddresses(null);
-    //         setCoordinates(null);
-    //     })
-    // }, [token, emptySearch])
-        setCurrLocation({lat: 43.651670, lng: -79.397140});
-        axios.get(`http://localhost:7070/boardgames/?lat=${43.651670}&lng=${-79.397140}`, {
-            headers: {
-                authorization: `Bearer: ${token}`
-            }
-        }).then((result) => {
-            const boardgameListings = result.data.sortedBoardgames.map((item) => {
-                const addressArr = item.address.split(",");
-                const shortAddress = addressArr[0] + "," + addressArr[1];
-                item["short_address"] = shortAddress
-                const coordinatesArr = item.coordinates.split(",");
-                item["proper_coordinates"] = {lat: Number(coordinatesArr[0]), lng: Number(coordinatesArr[1])};
-                return item;
-            })
-            const uniqueAddresses = [];
-            const uniqueCoordinates = [];
-            boardgameListings.forEach((item) => {
-                if (!uniqueAddresses.includes(item.short_address)) {
-                    uniqueAddresses.push(item.short_address);
-                    uniqueCoordinates.push(item.proper_coordinates);
+        axios.post('https://www.googleapis.com/geolocation/v1/geolocate?key=AIzaSyDMuQtxPW9rkoF6PnC1jwjnxorhrfuAQxA', {})
+        .then((result) => {
+            setCurrLocation(result.data.location);
+            axios.get(`http://localhost:7070/boardgames/?lat=${result.data.location.lat}&lng=${result.data.location.lng}`, {
+                headers: {
+                    authorization: `Bearer: ${token}`
                 }
-            })
-            setListings(boardgameListings);
-            setAddresses(uniqueAddresses);
-            setCoordinates(uniqueCoordinates);
+            }).then((result) => {
+                const boardgameListings = result.data.sortedBoardgames.map((item) => {
+                    const addressArr = item.address.split(",");
+                    const shortAddress = addressArr[0] + "," + addressArr[1];
+                    item["short_address"] = shortAddress
+                    const coordinatesArr = item.coordinates.split(",");
+                    item["proper_coordinates"] = {lat: Number(coordinatesArr[0]), lng: Number(coordinatesArr[1])};
+                    return item;
+                })
+                const uniqueAddresses = [];
+                const uniqueCoordinates = [];
+                boardgameListings.forEach((item) => {
+                    if (!uniqueAddresses.includes(item.short_address)) {
+                        uniqueAddresses.push(item.short_address);
+                        uniqueCoordinates.push(item.proper_coordinates);
+                    }
+                })
+                setListings(boardgameListings);
+                setAddresses(uniqueAddresses);
+                setCoordinates(uniqueCoordinates);
         }).catch((error) => {
             console.log("For devs:", error);
             setListings(null);
             setAddresses(null);
             setCoordinates(null);
         })
+    }, [token, emptySearch])
     }, [token, emptySearch])
 
     function matchLabel(address) {

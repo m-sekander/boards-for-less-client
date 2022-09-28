@@ -53,7 +53,6 @@ function List() {
             axios.get(`https://api.boardgameatlas.com/api/search?name=${name}&client_id=${clientId}`)
             .then((result) => {
                 if (result.data.games.length > 0) {
-                    console.log("For devs:", result);
                     if (name.toLowerCase() === result.data.games[0].name.toLowerCase()) {
                         setFoundGame(result.data.games[0]);
                         if (result.data.games[0].categories.length > 0) {
@@ -98,7 +97,6 @@ function List() {
                 authorization: `Bearer: ${token}`
             }
         }).then((result) => {
-            console.log("For devs:", result);
             setMessage(result.data.message);
             setIsSuccessful(true);
 

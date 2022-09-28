@@ -36,7 +36,6 @@ function Register() {
                 address: formattedAddress,
                 coordinates: coordinateStr
             }).then((result) => {
-                console.log("For devs:", result);
                 setMessage(result.data.message);
                 setIsSuccessful(true);
     

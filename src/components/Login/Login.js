@@ -14,7 +14,6 @@ function Login() {
             email: event.target.email.value,
             password: event.target.password.value
         }).then((result) => {
-            console.log("For devs:", result);
             setMessage(result.data.message);
             setIsSuccessful(true);
             localStorage.setItem('token', result.data.token);
