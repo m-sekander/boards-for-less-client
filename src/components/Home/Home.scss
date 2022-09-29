@@ -1,5 +1,14 @@
 @use "../../styles/partials/colors" as *;
 
+@keyframes scaleTitle {
+    0% {
+        transform: scale(1);
+    }
+    100% {
+        transform: scale(1.075);
+    }
+}
+
 .home {
     min-height: 32.5rem;
     background-color: $primary-background;
@@ -14,6 +23,7 @@
     &__title {
         text-align: center;
         font-size: 1.5rem;
+        animation: scaleTitle 2.25s alternate infinite ease-out;
     }
 
     &__links {

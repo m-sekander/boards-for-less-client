@@ -35,6 +35,45 @@ function Rent() {
         zIndex: -1 
     }
 
+    useEffect(() => {
+        axios.post(`https://www.googleapis.com/geolocation/v1/geolocate?key=${process.env.REACT_APP_GOOGLE_KEY}`, {})
+        .then((result) => {
+            // setCurrLocation(result.data.location);
+            setCurrLocation({lat: 43.642052, lng: -79.412003});
+            // axios.get(`http://localhost:${serverPort}/boardgames/?lat=${result.data.location.lat}&lng=${result.data.location.lng}`, {
+            axios.get(`http://localhost:${serverPort}/boardgames/?lat=${43.642052}&lng=${-79.412003}`, {
+                headers: {
+                    authorization: `Bearer: ${token}`
+                }
+            }).then((result) => {
+                const boardgameListings = result.data.sortedBoardgames.map((item) => {
+                    const addressArr = item.address.split(",");
+                    const shortAddress = addressArr[0] + "," + addressArr[1];
+                    item["short_address"] = shortAddress
+                    const coordinatesArr = item.coordinates.split(",");
+                    item["proper_coordinates"] = {lat: Number(coordinatesArr[0]), lng: Number(coordinatesArr[1])};
+                    return item;
+                })
+                const uniqueAddresses = [];
+                const uniqueCoordinates = [];
+                boardgameListings.forEach((item) => {
+                    if (!uniqueAddresses.includes(item.short_address)) {
+                        uniqueAddresses.push(item.short_address);
+                        uniqueCoordinates.push(item.proper_coordinates);
+                    }
+                })
+                setListings(boardgameListings);
+                setAddresses(uniqueAddresses);
+                setCoordinates(uniqueCoordinates);
+        }).catch((error) => {
+            console.log("For devs:", error);
+            setListings(null);
+            setAddresses(null);
+            setCoordinates(null);
+        })
+        })
+    }, [token, emptySearch, serverPort])
+
     function handleSearch(event) {
         event.preventDefault();
 
@@ -76,43 +115,6 @@ function Rent() {
         })
     }
 
-    useEffect(() => {
-        axios.post(`https://www.googleapis.com/geolocation/v1/geolocate?key=${process.env.REACT_APP_GOOGLE_KEY}`, {})
-        .then((result) => {
-            setCurrLocation(result.data.location);
-            axios.get(`http://localhost:${serverPort}/boardgames/?lat=${result.data.location.lat}&lng=${result.data.location.lng}`, {
-                headers: {
-                    authorization: `Bearer: ${token}`
-                }
-            }).then((result) => {
-                const boardgameListings = result.data.sortedBoardgames.map((item) => {
-                    const addressArr = item.address.split(",");
-                    const shortAddress = addressArr[0] + "," + addressArr[1];
-                    item["short_address"] = shortAddress
-                    const coordinatesArr = item.coordinates.split(",");
-                    item["proper_coordinates"] = {lat: Number(coordinatesArr[0]), lng: Number(coordinatesArr[1])};
-                    return item;
-                })
-                const uniqueAddresses = [];
-                const uniqueCoordinates = [];
-                boardgameListings.forEach((item) => {
-                    if (!uniqueAddresses.includes(item.short_address)) {
-                        uniqueAddresses.push(item.short_address);
-                        uniqueCoordinates.push(item.proper_coordinates);
-                    }
-                })
-                setListings(boardgameListings);
-                setAddresses(uniqueAddresses);
-                setCoordinates(uniqueCoordinates);
-        }).catch((error) => {
-            console.log("For devs:", error);
-            setListings(null);
-            setAddresses(null);
-            setCoordinates(null);
-        })
-        })
-    }, [token, emptySearch, serverPort])
-
     function matchLabel(address) {
         return addresses.indexOf(address) + 1;
     }
@@ -133,7 +135,7 @@ function Rent() {
             {currLocation &&
                 <>
                     <div className="rent__map-container">
-                        <GoogleMap zoom={11} center={currLocation} options={options} mapContainerClassName="rent__map">
+                        <GoogleMap zoom={12} center={currLocation} options={options} mapContainerClassName="rent__map">
                             <Marker position={currLocation} icon={currLocationMarker} zIndex={100} />
                             {coordinates && 
                                 coordinates.map((item, i) => {
