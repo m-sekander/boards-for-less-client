@@ -111,7 +111,22 @@ function List() {
             }, 2000);
         }).catch((error) => {
             console.log("For devs:", error);
-            setMessage(error.response.data.message);
+            if (error.response.data.message) {
+                setMessage(error.response.data.message);
+                if (error.response.data.message.toLowerCase().includes("minimum players")) {
+                    event.target.minPlayers.focus();
+                } else if (error.response.data.message.toLowerCase().includes("maximum players")) {
+                    event.target.maxPlayers.focus();
+                } else if (error.response.data.message.toLowerCase().includes("minimum age")) {
+                    event.target.minAge.focus();
+                } else if (error.response.data.message.toLowerCase().includes("playtime")) {
+                    event.target.avgPlay.focus();
+                } else if (error.response.data.message.toLowerCase().includes("price")) {
+                    event.target.price.focus();
+                } else if (error.response.data.message.toLowerCase().includes("date")) {
+                    event.target.availableUntil.focus();
+                } 
+            }
         })
     }
 

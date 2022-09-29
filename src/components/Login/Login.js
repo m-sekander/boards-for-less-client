@@ -24,7 +24,14 @@ function Login() {
             }, 2000);
         }).catch((error) => {
             console.log("For devs:", error);
-            setMessage(error.response.data.message);
+            if (error.response.data.message) {
+                setMessage(error.response.data.message);
+                if (error.response.data.message.toLowerCase().includes("user")) {
+                    event.target.email.focus();
+                } else if (error.response.data.message.toLowerCase().includes("credentials")) {
+                    event.target.password.focus();
+                }
+            }
         })
     }
 

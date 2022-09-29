@@ -52,6 +52,11 @@ function Register() {
             console.log("For devs:", error);
             if (error.response.data.message) {
                 setMessage(error.response.data.message);
+                if (error.response.data.message.toLowerCase().includes("email")) {
+                    event.target.email.focus();
+                } else if (error.response.data.message.toLowerCase().includes("password")) {
+                    event.target.password.focus();
+                }
             }
         });
     }
