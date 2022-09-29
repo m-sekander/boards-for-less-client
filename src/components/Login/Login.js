@@ -10,7 +10,7 @@ function Login() {
     function onSubmit(event) {
         event.preventDefault();
         
-        axios.post("http://localhost:7070/auth/login", {
+        axios.post(`http://localhost:${process.env.REACT_APP_SERVER_PORT}/auth/login`, {
             email: event.target.email.value,
             password: event.target.password.value
         }).then((result) => {

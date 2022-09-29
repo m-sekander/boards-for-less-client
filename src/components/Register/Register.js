@@ -33,7 +33,7 @@ function Register() {
             return getLatLng(result[0])
         }).then((result) => {
             const coordinateStr = `${result.lat},${result.lng}`
-            return axios.post("http://localhost:7070/auth/signup", {
+            return axios.post(`http://localhost:${process.env.REACT_APP_SERVER_PORT}/auth/signup`, {
                 email: event.target.email.value,
                 name: event.target.name.value,
                 password: event.target.password.value,

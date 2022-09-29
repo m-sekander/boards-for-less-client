@@ -11,7 +11,7 @@ function List() {
     const [isSuccessful, setIsSuccessful] = useState(false);
 
     const token = localStorage.getItem('token');
-    const clientId = "3fqaLTHcJ1";
+    const clientId = process.env.REACT_APP_BG_ATLAS_CLIENT_ID;
 
     useEffect(() => {
         axios.get(`https://api.boardgameatlas.com/api/game/categories?client_id=${clientId}`)
@@ -20,7 +20,7 @@ function List() {
         }).catch((error) => {
             console.log("For devs:", error);
         })
-    }, [])
+    }, [clientId])
 
     function initializeDate() {
         const today = new Date();
@@ -77,12 +77,14 @@ function List() {
         event.target.reset();
         setFoundGame(null);
         setFoundCategory(null);
+        setMessage(null);
+        setIsSuccessful(false);
     }
 
     function onSubmit(event) {
         event.preventDefault();
 
-        axios.post("http://localhost:7070/boardgames/", {
+        axios.post(`http://localhost:${process.env.REACT_APP_SERVER_PORT}/boardgames/`, {
             name: event.target.name.value,
             category: event.target.category.value,
             minPlayers: event.target.minPlayers.value,

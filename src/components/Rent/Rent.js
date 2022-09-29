@@ -14,6 +14,7 @@ function Rent() {
     const [contentExpansion, setContentExpansion] = useState(false);
 
     const token = localStorage.getItem('token');
+    const serverPort = process.env.REACT_APP_SERVER_PORT;
 
     const options = { 
         mapId: "658aa220ecc8edae",
@@ -43,7 +44,7 @@ function Rent() {
 
         const boardgameNameParamFormat = event.target.name.value.split(" ").join("+");
 
-        axios.get(`http://localhost:7070/boardgames/${boardgameNameParamFormat}/?lat=${currLocation.lat}&lng=${currLocation.lng}`, {
+        axios.get(`http://localhost:${serverPort}/boardgames/${boardgameNameParamFormat}/?lat=${currLocation.lat}&lng=${currLocation.lng}`, {
             headers: {
                 authorization: `Bearer: ${token}`
             }
@@ -76,10 +77,10 @@ function Rent() {
     }
 
     useEffect(() => {
-        axios.post('https://www.googleapis.com/geolocation/v1/geolocate?key=AIzaSyDMuQtxPW9rkoF6PnC1jwjnxorhrfuAQxA', {})
+        axios.post(`https://www.googleapis.com/geolocation/v1/geolocate?key=${process.env.REACT_APP_GOOGLE_KEY}`, {})
         .then((result) => {
             setCurrLocation(result.data.location);
-            axios.get(`http://localhost:7070/boardgames/?lat=${result.data.location.lat}&lng=${result.data.location.lng}`, {
+            axios.get(`http://localhost:${serverPort}/boardgames/?lat=${result.data.location.lat}&lng=${result.data.location.lng}`, {
                 headers: {
                     authorization: `Bearer: ${token}`
                 }
@@ -109,8 +110,8 @@ function Rent() {
             setAddresses(null);
             setCoordinates(null);
         })
-    }, [token, emptySearch])
-    }, [token, emptySearch])
+        })
+    }, [token, emptySearch, serverPort])
 
     function matchLabel(address) {
         return addresses.indexOf(address) + 1;

@@ -17,7 +17,7 @@ function App() {
   const isLoggedIn = localStorage.getItem('token');
 
   const { isLoaded } = useLoadScript({
-    googleMapsApiKey: "AIzaSyDMuQtxPW9rkoF6PnC1jwjnxorhrfuAQxA",
+    googleMapsApiKey: process.env.REACT_APP_GOOGLE_KEY,
     region: "CA",
     libraries
   });

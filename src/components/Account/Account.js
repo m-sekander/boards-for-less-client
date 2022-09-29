@@ -9,15 +9,16 @@ function Account() {
     const [contentExpansion, setContentExpansion] = useState(false);
     
     const token = localStorage.getItem('token');
+    const serverPort = process.env.REACT_APP_SERVER_PORT;
 
     useEffect(() => {
-        axios.get("http://localhost:7070/users/", {
+        axios.get(`http://localhost:${serverPort}/users/`, {
             headers: {
                 Authorization: `Bearer ${token}`,
             },
         }).then((result) => {
             setUserDetails(result.data);
-            return axios.get("http://localhost:7070/boardgames/user", {
+            return axios.get(`http://localhost:${serverPort}/boardgames/user`, {
                 headers: {
                     Authorization: `Bearer ${token}`,
                 },
@@ -33,7 +34,7 @@ function Account() {
         }).catch((error) => {
             console.log("For devs:", error);
         });
-    }, [token]);
+    }, [token, serverPort]);
 
 
     if (!userDetails) {
