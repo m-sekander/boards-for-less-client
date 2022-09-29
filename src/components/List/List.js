@@ -9,6 +9,7 @@ function List() {
     const [foundCategory, setFoundCategory] = useState(null);
     const [message, setMessage] = useState(null);
     const [isSuccessful, setIsSuccessful] = useState(false);
+    const [showDetails, setShowDetails] = useState(false);
 
     const token = localStorage.getItem('token');
     const clientId = process.env.REACT_APP_BG_ATLAS_CLIENT_ID;
@@ -46,6 +47,14 @@ function List() {
         setFoundCategory(event.target.value);
     }
 
+    function handleHide() {
+        setShowDetails(false);
+        setFoundGame(null);
+        setFoundCategory(null);
+        setMessage(null);
+        setIsSuccessful(false);
+    }
+
     function handleAutofill(event) {
         const name = event.target.value;
 
@@ -71,6 +80,8 @@ function List() {
                 setFoundCategory(null); 
             })
         }
+
+        setShowDetails(true);
     }
 
     function onReset(event) {
@@ -79,6 +90,7 @@ function List() {
         setFoundCategory(null);
         setMessage(null);
         setIsSuccessful(false);
+        setShowDetails(false);
     }
 
     function onSubmit(event) {
@@ -108,6 +120,7 @@ function List() {
                 setFoundCategory(null);
                 setMessage(null);
                 setIsSuccessful(false);
+                setShowDetails(false)
             }, 2000);
         }).catch((error) => {
             console.log("For devs:", error);
@@ -139,44 +152,11 @@ function List() {
         <div className='list'>
             <h2 className={`list__title ${message ? (isSuccessful ? 'list__title--successful' : 'list__title--error') : ""}`}>{message ? message : "Post your board games here, and share it with the world !"}</h2>
             <form className='list__form' onSubmit={onSubmit} onReset={onReset}>
-                <h2 className='list__subtitle'>Board Game Details</h2>
-                <div className='list__inputs'>
-                    <label className="list__label" htmlFor="name">
-                        Board Game Name :
-                        <input className="list__input" type="text" name="name" id="name" onBlur={handleAutofill} />
-                    </label>
-                    <label className="list__label" htmlFor="category">
-                        Category :
-                        <select className="list__select" name="category" id="category" value={foundCategory ? foundCategory : ""} onChange={changeHandler}>
-                            <option className="list__option" value="" disabled>- Please Select -</option>
-                            {categories.map((item) => {
-                                return (<option key={item.id} className="list__option" value={item.name}>{item.name}</option>)
-                            })}
-                            <option className="list__option" value="Other">Other</option>
-                        </select>
-                    </label>
-                    <label className="list__label" htmlFor="minPlayers">
-                        Minimum Players Needed :
-                        <input className="list__input" type="text" name="minPlayers" id="minPlayers" defaultValue={foundGame ? foundGame.min_players : ""} />
-                    </label>
-                    <label className="list__label" htmlFor="maxPlayers">
-                        Maximum Players Allowed :
-                        <input className="list__input" type="text" name="maxPlayers" id="maxPlayers" defaultValue={foundGame ? foundGame.max_players : ""} />
-                    </label>
-                    <label className="list__label" htmlFor="minAge">
-                        Minimum Age Restriction :
-                        <input className="list__input" type="text" name="minAge" id="minAge" defaultValue={foundGame ? foundGame.min_age : ""} />
-                    </label>
-                    <label className="list__label" htmlFor="avgPlay">
-                        Average Playtime (minutes) :
-                        <input className="list__input" type="text" name="avgPlay" id="avgPlay" defaultValue={foundGame ? (Math.round((foundGame.min_playtime + foundGame.max_playtime) / 2)) : ""} />
-                    </label>
-                    <label className="list__label list__label--big" htmlFor="description">
-                        Description:
-                        <textarea className="list__textarea" name="description" id="description" defaultValue={foundGame ? foundGame.description_preview.trim() : ""}/>
-                    </label>
-                </div>
-                <h2 className='list__subtitle'>Logistic Details</h2>
+                <h2 className='list__subtitle'>Logistics</h2>
+                <label className="list__label list__label--big" htmlFor="name">
+                    Board Game Name :
+                    <input className="list__input" type="text" name="name" id="name" onBlur={handleAutofill} onKeyDown={handleHide} />
+                </label>
                 <div className='list__inputs'>
                     <label className="list__label" htmlFor="price">
                         Price / Week (CAD) :
@@ -187,6 +167,42 @@ function List() {
                         <input className="list__input" type="date" name="availableUntil" id="availableUntil" defaultValue={initializeDate()} min={initializeDate()} />
                     </label>
                 </div>
+                {showDetails &&
+                    <>
+                        <h2 className='list__subtitle'>Board Game Details</h2>
+                        <div className='list__inputs'>
+                            <label className="list__label list__label--big" htmlFor="category">
+                                Category :
+                                <select className="list__select" name="category" id="category" value={foundCategory ? foundCategory : ""} onChange={changeHandler}>
+                                    <option className="list__option" value="" disabled>- Please Select -</option>
+                                    {categories.map((item) => {
+                                        return (<option key={item.id} className="list__option" value={item.name}>{item.name}</option>)
+                                    })}
+                                    <option className="list__option" value="Other">Other</option>
+                                </select>
+                            </label>
+                            <label className="list__label" htmlFor="minPlayers">
+                                Minimum Players Needed :
+                                <input className="list__input" type="text" name="minPlayers" id="minPlayers" defaultValue={foundGame ? foundGame.min_players : ""} />
+                            </label>
+                            <label className="list__label" htmlFor="maxPlayers">
+                                Maximum Players Allowed :
+                                <input className="list__input" type="text" name="maxPlayers" id="maxPlayers" defaultValue={foundGame ? foundGame.max_players : ""} />
+                            </label>
+                            <label className="list__label" htmlFor="minAge">
+                                Minimum Age Restriction :
+                                <input className="list__input" type="text" name="minAge" id="minAge" defaultValue={foundGame ? foundGame.min_age : ""} />
+                            </label>
+                            <label className="list__label" htmlFor="avgPlay">
+                                Average Playtime (minutes) :
+                                <input className="list__input" type="text" name="avgPlay" id="avgPlay" defaultValue={foundGame ? (Math.round((foundGame.min_playtime + foundGame.max_playtime) / 2)) : ""} />
+                            </label>
+                            <label className="list__label list__label--big" htmlFor="description">
+                                Description:
+                                <textarea className="list__textarea" name="description" id="description" defaultValue={foundGame ? foundGame.description_preview.trim() : ""}/>
+                            </label>
+                        </div>
+                    </>}
                 <div className='list__actions'>
                     <CTA text="Reset" isButton={true} isSpecial={true} type="Reset" />
                     <CTA text="Submit" isButton={true} />

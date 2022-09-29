@@ -38,10 +38,8 @@ function Rent() {
     useEffect(() => {
         axios.post(`https://www.googleapis.com/geolocation/v1/geolocate?key=${process.env.REACT_APP_GOOGLE_KEY}`, {})
         .then((result) => {
-            // setCurrLocation(result.data.location);
-            setCurrLocation({lat: 43.642052, lng: -79.412003});
-            // axios.get(`http://localhost:${serverPort}/boardgames/?lat=${result.data.location.lat}&lng=${result.data.location.lng}`, {
-            axios.get(`http://localhost:${serverPort}/boardgames/?lat=${43.642052}&lng=${-79.412003}`, {
+            setCurrLocation(result.data.location);
+            axios.get(`http://localhost:${serverPort}/boardgames/?lat=${result.data.location.lat}&lng=${result.data.location.lng}`, {
                 headers: {
                     authorization: `Bearer: ${token}`
                 }
@@ -135,7 +133,7 @@ function Rent() {
             {currLocation &&
                 <>
                     <div className="rent__map-container">
-                        <GoogleMap zoom={12} center={currLocation} options={options} mapContainerClassName="rent__map">
+                        <GoogleMap zoom={13} center={currLocation} options={options} mapContainerClassName="rent__map">
                             <Marker position={currLocation} icon={currLocationMarker} zIndex={100} />
                             {coordinates && 
                                 coordinates.map((item, i) => {

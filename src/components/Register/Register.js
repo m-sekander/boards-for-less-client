@@ -29,6 +29,7 @@ function Register() {
 
         geocodeByAddress(event.target.address.value)
         .then((result) => {
+            console.log(result[0])
             formattedAddress = result[0].formatted_address;
             return getLatLng(result[0])
         }).then((result) => {
@@ -61,7 +62,7 @@ function Register() {
         });
     }
 
-
+    
     return (
         <div className='register'>
             <h2 className={`register__title ${message ? (isSuccessful ? 'register__title--successful' : 'register__title--error') : ""}`}>{message ? message : "Please fill in all details to create an account."}</h2>

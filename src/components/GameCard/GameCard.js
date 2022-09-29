@@ -8,6 +8,14 @@ function GameCard({ isOwner, ownerEmail, id, name, shortAddress, matchLabel, pri
     function clickHandler() {
         setContentExpansion(true);
         setModalActive(true);
+
+        if (!isOwner) {
+            window.scroll({
+                top: 200,
+                right: 0,
+                behavior: 'smooth'
+            });
+        }
     }
 
     if (isOwner) {

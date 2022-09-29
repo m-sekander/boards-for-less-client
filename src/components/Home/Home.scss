@@ -23,7 +23,7 @@
     &__title {
         text-align: center;
         font-size: 1.5rem;
-        animation: scaleTitle 2.25s alternate infinite ease-out;
+        animation: scaleTitle 2.125s alternate infinite linear;
     }
 
     &__links {
