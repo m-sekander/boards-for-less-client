@@ -12,6 +12,8 @@ function Rent() {
     const [coordinates, setCoordinates] = useState(null);
     const [emptySearch, setEmptySearch] = useState(false);
     const [contentExpansion, setContentExpansion] = useState(false);
+    const [homeSearch, setHomeSearch] = useState(false);
+    const [homeLocation, setHomeLocation] = useState(null);
 
     const token = localStorage.getItem('token');
     const serverPort = process.env.REACT_APP_SERVER_PORT;
@@ -36,10 +38,23 @@ function Rent() {
     }
 
     useEffect(() => {
+        axios.get(`http://localhost:${serverPort}/users/coordinates`, {
+                headers: {
+                    authorization: `Bearer: ${token}`
+                }
+            }).then((result) => {
+                const coordinateArr = result.data.coordinates.split(",");
+                setHomeLocation({lat: Number(coordinateArr[0]), lng: Number(coordinateArr[1])})
+            }).catch((error) => {
+                console.log("For devs:", error);
+            })
+    }, [])
+
+    useEffect(() => {
         axios.post(`https://www.googleapis.com/geolocation/v1/geolocate?key=${process.env.REACT_APP_GOOGLE_KEY}`, {})
         .then((result) => {
             setCurrLocation(result.data.location);
-            axios.get(`http://localhost:${serverPort}/boardgames/?lat=${result.data.location.lat}&lng=${result.data.location.lng}`, {
+            axios.get(`http://localhost:${serverPort}/boardgames/?lat=${homeSearch ? homeLocation.lat : result.data.location.lat}&lng=${homeSearch ? homeLocation.lng : result.data.location.lng}`, {
                 headers: {
                     authorization: `Bearer: ${token}`
                 }
@@ -81,7 +96,7 @@ function Rent() {
 
         const boardgameNameParamFormat = event.target.name.value.split(" ").join("+");
 
-        axios.get(`http://localhost:${serverPort}/boardgames/${boardgameNameParamFormat}/?lat=${currLocation.lat}&lng=${currLocation.lng}`, {
+        axios.get(`http://localhost:${serverPort}/boardgames/${boardgameNameParamFormat}/?lat=${homeSearch ? homeLocation.lat : currLocation.lat}&lng=${homeSearch ? homeLocation.lng : currLocation.lng}`, {
             headers: {
                 authorization: `Bearer: ${token}`
             }
@@ -117,6 +132,10 @@ function Rent() {
         return addresses.indexOf(address) + 1;
     }
 
+    function handleClick(event) {
+        setHomeSearch(!homeSearch);
+    }
+
 
     return (
         <div className={`rent ${contentExpansion ? "rent--expanded" : ""}`}>
@@ -129,12 +148,13 @@ function Rent() {
                         <button className="rent__search"><img className="rent__icon" src={searchIcon} alt="" /></button>
                     </div>
                 </label>
+                <button onClick={handleClick} className="rent__action">Search From {homeSearch ? "Current Location" : "Home Address"} ?</button>
             </form>
             {currLocation &&
                 <>
                     <div className="rent__map-container">
-                        <GoogleMap zoom={13} center={currLocation} options={options} mapContainerClassName="rent__map">
-                            <Marker position={currLocation} icon={currLocationMarker} zIndex={100} />
+                        <GoogleMap zoom={13} center={homeSearch ? homeLocation : currLocation} options={options} mapContainerClassName="rent__map">
+                            <Marker position={homeSearch ? homeLocation : currLocation} icon={currLocationMarker} zIndex={100} />
                             {coordinates && 
                                 coordinates.map((item, i) => {
                                     return <Marker key={i+1} position={item} label={String(i+1)} options={{zIndex:99-i, opacity:0.9325}} />
@@ -148,7 +168,7 @@ function Rent() {
                             {listings ?
                                 listings.map((item, i) => {
                                     return (
-                                        <GameCard key={item.id} token={token} id={item.id} name={item.name} shortAddress={item.short_address} matchLabel={matchLabel} setContentExpansion={setContentExpansion} ownerEmail={item.user_email} />
+                                        <GameCard key={item.id} token={token} id={item.id} name={item.name} shortAddress={item.short_address} matchLabel={matchLabel} setContentExpansion={setContentExpansion} ownerEmail={item.user_email} destination={item.coordinates} origin={homeSearch ? homeLocation : currLocation} />
                                     )
                                 })
                             :

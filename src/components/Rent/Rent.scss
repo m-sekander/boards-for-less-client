@@ -43,7 +43,7 @@
         flex-direction: column;
         align-items: center;
         color: $primary-headline;
-        margin-bottom: 1.5rem;
+        margin-bottom: 0.75rem;
         width: 100%;
         min-width: 15rem;
         max-width: 75rem;
@@ -101,6 +101,36 @@
 
     &__icon {
         filter: brightness(100) saturate(100%);
+    }
+
+    &__action {
+        height: 2.5rem;
+        border: 1px solid $cta-hover;
+        border-radius: 8px;
+        font-size: .75rem;
+        line-height: 1.25rem;
+        font-weight: 600;
+        background-color: $cta-background;
+        color: $cta-text;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-transform: uppercase;
+        position: relative;
+        width: 20rem;
+        padding: 0 2rem;
+        font-family: inherit;
+
+        &:hover {
+            cursor: pointer;
+            background-color: $cta-hover;
+            transform: scale(1.025);
+        }
+
+        &:focus {
+            border: 1px solid $cta-background-special;
+            outline: none;
+        }
     }
 
     &__map {

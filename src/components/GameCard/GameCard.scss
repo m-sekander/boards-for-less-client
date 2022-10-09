@@ -33,6 +33,18 @@
     &__listing-logistics {
         font-weight: 200;
     }
+
+    &__listing-marker {
+        font-weight: 200;
+        font-size: 0.78125rem;
+        color: $error;
+    }
+
+    &__listing-distance {
+        font-weight: 200;
+        font-size: 0.78125rem;
+        color: $cta-background;
+    }
     
     &__action {
         width: 25%;
@@ -52,6 +64,7 @@
         font-size: 0.75rem;
         font-family: inherit;
         line-height: 1rem;
+        cursor: pointer;
     
         &:hover {
             background-color: $cta-background-special;
