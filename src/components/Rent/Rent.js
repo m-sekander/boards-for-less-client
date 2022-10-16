@@ -153,6 +153,7 @@ function Rent() {
             {currLocation &&
                 <>
                     <div className="rent__map-container">
+                        {/* component that generates a custom, interactive Google Map */}
                         <GoogleMap zoom={13} center={homeSearch ? homeLocation : currLocation} options={options} mapContainerClassName="rent__map">
                             <Marker position={homeSearch ? homeLocation : currLocation} icon={currLocationMarker} zIndex={100} />
                             {coordinates && 

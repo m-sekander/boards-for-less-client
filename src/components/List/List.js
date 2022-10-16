@@ -24,6 +24,7 @@ function List() {
     }, [clientId])
 
     function initializeDate() {
+        // function to set available until field to a week from today
         const today = new Date();
         let initilizationDate = new Date();
         initilizationDate.setDate(today.getDate() + 8);
@@ -56,6 +57,7 @@ function List() {
     }
 
     function handleAutofill(event) {
+        // funcition to call for and fill in board game details from Board Games Atlas once a name has been input by user
         const name = event.target.value;
 
         if (!foundGame || name !== foundGame.name) {

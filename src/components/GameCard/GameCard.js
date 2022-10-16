@@ -20,6 +20,7 @@ function GameCard({ isOwner, ownerEmail, id, name, shortAddress, matchLabel, pri
     }
 
     function calcDistance() {
+        // function to show listing distance from marker to user
         const destinationArr = destination.split(",");
         const destinationFormatted = {lat: Number(destinationArr[0]), lng: Number(destinationArr[1])};
         return `${Math.round(computeDistanceBetween(origin, destinationFormatted)/100)/10}km`;
@@ -48,7 +49,7 @@ function GameCard({ isOwner, ownerEmail, id, name, shortAddress, matchLabel, pri
                 <div>
                     <span className="game-card__listing-marker">{`Marker ${matchLabel(shortAddress)}`}</span>
                     <span className="game-card__listing-logistics"> - </span>
-                    <span className="game-card__listing-distance">{`${calcDistance()}`}</span>
+                    <span className="game-card__listing-distance">{calcDistance()}</span>
                 </div>
             </div>
             <button className="game-card__action" onClick={clickHandler}>More Details</button>

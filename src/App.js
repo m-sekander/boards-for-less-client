@@ -1,4 +1,5 @@
 import './App.scss';
+import { useState } from 'react';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import Header from './components/Header/Header';
 import NavBar from './components/NavBar/NavBar';
@@ -11,11 +12,12 @@ import Rent from './components/Rent/Rent';
 import { useLoadScript } from '@react-google-maps/api';
 import Account from './components/Account/Account';
 
-const libraries = ["places"];
 
 function App() {
   const isLoggedIn = localStorage.getItem('token');
+  const [libraries] = useState(["places"]);
 
+  // initializing Google Maps Platform API
   const { isLoaded } = useLoadScript({
     googleMapsApiKey: process.env.REACT_APP_GOOGLE_KEY,
     region: "CA",

@@ -27,10 +27,12 @@ function Register() {
             return;
         }
 
+        // returns promised that contains properly formatted address
         geocodeByAddress(event.target.address.value)
         .then((result) => {
             console.log(result[0])
             formattedAddress = result[0].formatted_address;
+            // returns promise that gives lat and lng of user input address for coordinate markers
             return getLatLng(result[0])
         }).then((result) => {
             const coordinateStr = `${result.lat},${result.lng}`
@@ -84,6 +86,7 @@ function Register() {
                         Confirm Password :
                         <input className="register__input" type="password" name="confirmPassword" id="confirmPassword" />
                     </label>
+                    {/* component that generates address suggestions via Google Maps based on user input */}
                     <PlacesAutocomplete
                         value={address}
                         onChange={handleChange}
