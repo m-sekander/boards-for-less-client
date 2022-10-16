@@ -16,7 +16,7 @@ function Rent() {
     const [homeLocation, setHomeLocation] = useState(null);
 
     const token = localStorage.getItem('token');
-    const serverPort = process.env.REACT_APP_SERVER_PORT;
+    const server = process.env.REACT_APP_SERVER;
 
     const options = { 
         mapId: "658aa220ecc8edae",
@@ -38,7 +38,7 @@ function Rent() {
     }
 
     useEffect(() => {
-        axios.get(`http://localhost:${serverPort}/users/coordinates`, {
+        axios.get(`${server}/users/coordinates`, {
                 headers: {
                     authorization: `Bearer: ${token}`
                 }
@@ -48,13 +48,13 @@ function Rent() {
             }).catch((error) => {
                 console.log("For devs:", error);
             })
-    }, [token, serverPort])
+    }, [token, server])
 
     useEffect(() => {
         axios.post(`https://www.googleapis.com/geolocation/v1/geolocate?key=${process.env.REACT_APP_GOOGLE_KEY}`, {})
         .then((result) => {
             setCurrLocation(result.data.location);
-            axios.get(`http://localhost:${serverPort}/boardgames/?lat=${homeSearch ? homeLocation.lat : result.data.location.lat}&lng=${homeSearch ? homeLocation.lng : result.data.location.lng}`, {
+            axios.get(`${server}/boardgames/?lat=${homeSearch ? homeLocation.lat : result.data.location.lat}&lng=${homeSearch ? homeLocation.lng : result.data.location.lng}`, {
                 headers: {
                     authorization: `Bearer: ${token}`
                 }
@@ -85,7 +85,7 @@ function Rent() {
             setCoordinates(null);
         })
         })
-    }, [token, emptySearch, serverPort, homeLocation]) // eslint-disable-line react-hooks/exhaustive-deps
+    }, [token, emptySearch, server, homeLocation]) // eslint-disable-line react-hooks/exhaustive-deps
 
     function handleSearch(event) {
         event.preventDefault();
@@ -96,7 +96,7 @@ function Rent() {
 
         const boardgameNameParamFormat = event.target.name.value.split(" ").join("+");
 
-        axios.get(`http://localhost:${serverPort}/boardgames/${boardgameNameParamFormat}/?lat=${homeSearch ? homeLocation.lat : currLocation.lat}&lng=${homeSearch ? homeLocation.lng : currLocation.lng}`, {
+        axios.get(`${server}/boardgames/${boardgameNameParamFormat}/?lat=${homeSearch ? homeLocation.lat : currLocation.lat}&lng=${homeSearch ? homeLocation.lng : currLocation.lng}`, {
             headers: {
                 authorization: `Bearer: ${token}`
             }

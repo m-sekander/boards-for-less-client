@@ -98,7 +98,7 @@ function List() {
     function onSubmit(event) {
         event.preventDefault();
 
-        axios.post(`http://localhost:${process.env.REACT_APP_SERVER_PORT}/boardgames/`, {
+        axios.post(`${process.env.REACT_APP_SERVER}/boardgames/`, {
             name: event.target.name.value,
             category: event.target.category.value,
             minPlayers: event.target.minPlayers.value,

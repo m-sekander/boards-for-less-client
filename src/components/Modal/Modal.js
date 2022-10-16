@@ -8,7 +8,7 @@ function Modal({ isOwner, ownerEmail, boardgameName, boardgameId, setModalActive
     const [details, setDetails] = useState(null);
 
     const token = localStorage.getItem('token');
-    const serverPort = process.env.REACT_APP_SERVER_PORT;
+    const server = process.env.REACT_APP_SERVER;
 
     function clickHandler(event) {
         event.preventDefault();
@@ -30,7 +30,7 @@ function Modal({ isOwner, ownerEmail, boardgameName, boardgameId, setModalActive
     function handleDelete(event) {
         event.preventDefault();
 
-        axios.delete(`http://localhost:${serverPort}/boardgames/${boardgameId}`, {
+        axios.delete(`${server}/boardgames/${boardgameId}`, {
             headers: {
                 Authorization: `Bearer ${token}`,
             },
@@ -44,7 +44,7 @@ function Modal({ isOwner, ownerEmail, boardgameName, boardgameId, setModalActive
     }
 
     useEffect(() => {
-            axios.get(`http://localhost:${serverPort}/boardgames/details/${boardgameId}/?ownerEmail=${ownerEmail}`, {
+            axios.get(`${server}/boardgames/details/${boardgameId}/?ownerEmail=${ownerEmail}`, {
                 headers: {
                     Authorization: `Bearer ${token}`,
                 },
@@ -53,7 +53,7 @@ function Modal({ isOwner, ownerEmail, boardgameName, boardgameId, setModalActive
             }).catch((error) => {
                 console.log("For devs:", error);
             });
-    }, [token, boardgameId, ownerEmail, serverPort])
+    }, [token, boardgameId, ownerEmail, server])
     
 
     if (!details) {

@@ -20,7 +20,7 @@ function Header({isLoggedIn}) {
             return;
         }
         
-        axios.get(`http://localhost:${process.env.REACT_APP_SERVER_PORT}/users/name`, {
+        axios.get(`${process.env.REACT_APP_SERVER}/users/name`, {
             headers: {
                 Authorization: `Bearer ${token}`,
             },
