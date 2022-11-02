@@ -146,10 +146,6 @@ function List() {
     }
 
 
-    if (!categories) {
-        return;
-    }
-
     return (
         <div className='list'>
             <h2 className={`list__title ${message ? (isSuccessful ? 'list__title--successful' : 'list__title--error') : ""}`}>{message ? message : "Post your board games here, and share it with the world !"}</h2>
@@ -175,13 +171,18 @@ function List() {
                         <div className='list__inputs'>
                             <label className="list__label list__label--big" htmlFor="category">
                                 Category :
-                                <select className="list__select" name="category" id="category" value={foundCategory ? foundCategory : ""} onChange={changeHandler}>
-                                    <option className="list__option" value="" disabled>- Please Select -</option>
-                                    {categories.map((item) => {
-                                        return (<option key={item.id} className="list__option" value={item.name}>{item.name}</option>)
-                                    })}
-                                    <option className="list__option" value="Other">Other</option>
-                                </select>
+                                {categories 
+                                    ?
+                                    <select className="list__select" name="category" id="category" value={foundCategory ? foundCategory : ""} onChange={changeHandler}>
+                                        <option className="list__option" value="" disabled>- Please Select -</option>
+                                        {categories.map((item) => {
+                                            return (<option key={item.id} className="list__option" value={item.name}>{item.name}</option>)
+                                        })}
+                                        <option className="list__option" value="Other">Other</option>
+                                    </select>
+                                    :
+                                    <input className="list__input" type="text" name="category" id="category" defaultValue={foundCategory ? foundCategory : ""} />
+                                }
                             </label>
                             <label className="list__label" htmlFor="minPlayers">
                                 Minimum Players Needed :
