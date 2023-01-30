@@ -20,6 +20,7 @@ function Register() {
 
     function handleSignup(event) {
         event.preventDefault();
+        setMessage("Please wait...");
         let formattedAddress;
 
         if (!event.target.address.value) {

@@ -97,6 +97,7 @@ function List() {
 
     function onSubmit(event) {
         event.preventDefault();
+        setMessage("Please wait...");
 
         axios.post(`${process.env.REACT_APP_SERVER}/boardgames/`, {
             name: event.target.name.value,
